@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 
 interface ChatInputProps {
@@ -17,7 +18,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <div className="bg-neutral-100 flex w-full flex-col justify-center mt-[34px] px-[63px] py-[21px] rounded-[10px] border-[rgba(88,110,136,1)] border-solid border-2">
+      <div className="bg-neutral-100 flex w-full flex-col justify-center mt-[34px] px-4 py-3 rounded-[10px] border-[rgba(88,110,136,1)] border-solid border-2">
         <div className="flex items-center justify-between w-full">
           <input
             type="text"
