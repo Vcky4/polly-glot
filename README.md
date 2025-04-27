@@ -1,73 +1,89 @@
-# Welcome to your Lovable project
+# Welcome to PollyGlot 🌎
 
-## Project info
+## Project Overview
 
-**URL**: https://lovable.dev/projects/7eceb861-6eea-40c6-86f9-ac0c404e9467
+**PollyGlot** is a language translation app that leverages **OpenAI** for high-quality translations.  
+The UI was initially built using **Lovable**, and I integrated the OpenAI API myself to handle the core translation logic as part of my **Scrimba AI Engineer Certification** assessment.
 
-## How can I edit this code?
+**Live URL**: [PollyGlot Project](https://lovable.dev/projects/7eceb861-6eea-40c6-86f9-ac0c404e9467)
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## How to Edit and Work with the Code
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7eceb861-6eea-40c6-86f9-ac0c404e9467) and start prompting.
+You have several options for editing or contributing to PollyGlot:
 
-Changes made via Lovable will be committed automatically to this repo.
+### 1. Use Lovable
+Head over to the [PollyGlot Project](https://lovable.dev/projects/7eceb861-6eea-40c6-86f9-ac0c404e9467) on Lovable and start prompting and editing visually.  
+Changes made through Lovable will automatically be committed to the repository.
 
-**Use your preferred IDE**
+### 2. Work Locally (Your IDE)
+Prefer coding in your own environment? Follow these steps:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
+# Step 1: Clone the repository using the project's Git URL
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: Navigate to the project directory
+cd pollyglot
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Step 3: Install all project dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### 3. Important: OpenAI API Key Setup
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+To successfully run PollyGlot locally, you must add your **OpenAI API key**.
 
-**Use GitHub Codespaces**
+- Open the `useOpenAI.ts` hook located in the project.
+- Replace the placeholder or configure it to use your real OpenAI API key.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+> Without a valid API key, translations will not work.
 
-## What technologies are used for this project?
+### 4. Edit Directly on GitHub
+- Navigate to the file you want to change.
+- Click the ✏️ **Edit** button.
+- Make your changes and commit them.
 
-This project is built with:
+### 5. Use GitHub Codespaces
+- Go to your repository.
+- Click the green **Code** button and select **Codespaces**.
+- Create a new Codespace to launch a full dev environment in your browser.
+- Edit, commit, and push directly from there.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## Tech Stack 🛠
 
-Simply open [Lovable](https://lovable.dev/projects/7eceb861-6eea-40c6-86f9-ac0c404e9467) and click on Share -> Publish.
+PollyGlot is built with:
 
-## Can I connect a custom domain to my Lovable project?
+- **Vite** (Fast build tool)
+- **React** (Frontend framework)
+- **TypeScript** (Typed JavaScript)
+- **shadcn-ui** (Beautiful UI components)
+- **Tailwind CSS** (Utility-first styling)
+- **OpenAI API** (Translation engine)
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Deployment
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Publishing is simple!  
+Just open the project on [Lovable](https://lovable.dev/projects/7eceb861-6eea-40c6-86f9-ac0c404e9467), then click **Share → Publish**.
+
+---
+
+## Custom Domain
+
+You can connect PollyGlot to your own domain:
+
+1. Open **Project → Settings → Domains** in Lovable.
+2. Click **Connect Domain**.
+3. Follow the steps [here](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide).
+
+---
+
+> Built with ❤️, curiosity, and a love for languages — PollyGlot bridges the world one translation at a time.
