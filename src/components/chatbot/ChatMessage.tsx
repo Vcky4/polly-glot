@@ -12,7 +12,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message, isBot }) => {
 
   return (
     <div
-      className={`w-full text-xl font-${isBot ? "semibold" : "bold"} ${
+      className={`w-full pb-[11px] text-xl font-${isBot ? "semibold" : "bold"} ${
         isBot ? "leading-[26px]" : "text-center"
       } pt-[11px] pb-[${isBot ? "25" : "21"}px] px-[18px] ${messageClasses}`}
     >

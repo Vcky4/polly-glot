@@ -6,6 +6,7 @@ import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
 import ChatActions from "./ChatActions";
 import { useScrollToBottom } from "../../hooks/useScrollToBottom";
+import useOpenAi from "@/hooks/useOpenAi";
 
 interface Message {
   text: string;
@@ -14,31 +15,10 @@ interface Message {
 
 type Language = "french" | "spanish" | "german";
 
-const translations: Record<Language, Record<string, string>> = {
-  french: {
-    hello: "Bonjour",
-    "how are you": "Comment allez-vous",
-    "good morning": "Bonjour",
-    "thank you": "Merci",
-    goodbye: "Au revoir",
-  },
-  spanish: {
-    hello: "Hola",
-    "how are you": "¿Cómo estás?",
-    "good morning": "Buenos días",
-    "thank you": "Gracias",
-    goodbye: "Adiós",
-  },
-  german: {
-    hello: "Hallo",
-    "how are you": "Wie geht es dir?",
-    "good morning": "Guten Morgen",
-    "thank you": "Danke",
-    goodbye: "Auf Wiedersehen",
-  },
-};
 
 const GPT4ChatbotLayout: React.FC = () => {
+  const openai = useOpenAi()
+  const [isTranslating, setIsTranslating] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       text: "Select the language you <br /> me to translate into, type your text and hit send!",
@@ -49,16 +29,14 @@ const GPT4ChatbotLayout: React.FC = () => {
 
   const bottomRef = useScrollToBottom(messages);
 
-  const handleSendMessage = (message: string) => {
+  const handleSendMessage = async (message: string) => {
+    if (!message || isTranslating) return;
     setMessages([...messages, { text: message, isBot: false }]);
-
-    setTimeout(() => {
-      const lowerMessage = message.toLowerCase();
-      const translation = translations[selectedLanguage][lowerMessage] ||
-        `I don't understand that in ${selectedLanguage}`;
-
-      setMessages((prev) => [...prev, { text: translation, isBot: true }]);
-    }, 1000);
+    setIsTranslating(true);
+    const res = await openai.getTranslation(message, selectedLanguage);
+    const translation = res.replace(/<br \/>/g, "<br />");
+    setIsTranslating(false);
+    setMessages((prev) => [...prev, { text: translation, isBot: true }]);
   };
 
   const handleLanguageChange = (language: string) => {
@@ -80,6 +58,13 @@ const GPT4ChatbotLayout: React.FC = () => {
           {messages.map((msg, index) => (
             <ChatMessage key={index} message={msg.text} isBot={msg.isBot} />
           ))}
+          {isTranslating && (
+            <div className="flex items-center">
+              <span className="text-gray-500 animate-pulse">
+                Translating<span className="dot-anim">.</span>
+              </span>
+            </div>
+          )}
           <div ref={bottomRef} />
         </div>
         <ChatInput onSendMessage={handleSendMessage} />

@@ -99,3 +99,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes dots {
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+}
+
+.dot-anim::after {
+  content: ".";
+  animation: dots 1s steps(3, end) infinite;
+}
