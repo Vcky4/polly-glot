@@ -1,15 +1,20 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 interface ChatActionsProps {
-  onActionClick: (actionType: string) => void;
+  selectedLanguage: string;
+  setSelectedLanguage: (language: string) => void;
 }
 
-const ChatActions: React.FC<ChatActionsProps> = ({ onActionClick }) => {
+const ChatActions: React.FC<ChatActionsProps> = ({ selectedLanguage, setSelectedLanguage }) => {
   return (
     <div className="self-center flex w-[230px] max-w-full items-stretch gap-5 justify-between mt-[21px]">
       <button
-        onClick={() => onActionClick("voice")}
-        className="focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+        onClick={() => setSelectedLanguage("french")}
+        className={cn("rounded-md", {
+          "ring-2 ring-blue-500": selectedLanguage === "french",
+          "focus:outline-none focus:ring-2 focus:ring-blue-500": selectedLanguage !== "french",
+        })}
         aria-label="Voice input"
       >
         <img
@@ -19,8 +24,11 @@ const ChatActions: React.FC<ChatActionsProps> = ({ onActionClick }) => {
         />
       </button>
       <button
-        onClick={() => onActionClick("settings")}
-        className="focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+        onClick={() => setSelectedLanguage("spanish")}
+        className={cn("rounded-md", {
+          "ring-2 ring-blue-500": selectedLanguage === "spanish",
+          "focus:outline-none focus:ring-2 focus:ring-blue-500": selectedLanguage !== "spanish",
+        })}
         aria-label="Settings"
       >
         <img
@@ -30,8 +38,11 @@ const ChatActions: React.FC<ChatActionsProps> = ({ onActionClick }) => {
         />
       </button>
       <button
-        onClick={() => onActionClick("help")}
-        className="focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+        onClick={() => setSelectedLanguage("japanese")}
+        className={cn("rounded-md", {
+          "ring-2 ring-blue-500": selectedLanguage === "japanese",
+          "focus:outline-none focus:ring-2 focus:ring-blue-500": selectedLanguage !== "japanese",
+        })}
         aria-label="Help"
       >
         <img

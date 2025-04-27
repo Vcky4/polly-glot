@@ -46,7 +46,7 @@ const GPT4ChatbotLayout: React.FC = () => {
     },
   ]);
   const [selectedLanguage, setSelectedLanguage] = useState<Language>("french");
-  
+
   const bottomRef = useScrollToBottom(messages);
 
   const handleSendMessage = (message: string) => {
@@ -54,28 +54,22 @@ const GPT4ChatbotLayout: React.FC = () => {
 
     setTimeout(() => {
       const lowerMessage = message.toLowerCase();
-      const translation = translations[selectedLanguage][lowerMessage] || 
+      const translation = translations[selectedLanguage][lowerMessage] ||
         `I don't understand that in ${selectedLanguage}`;
 
       setMessages((prev) => [...prev, { text: translation, isBot: true }]);
     }, 1000);
   };
 
-  const handleActionClick = (actionType: string) => {
-    if (actionType === "voice") {
-      setSelectedLanguage("french");
-    } else if (actionType === "settings") {
-      setSelectedLanguage("german");
-    } else if (actionType === "help") {
-      setSelectedLanguage("spanish");
-      setMessages([
-        ...messages,
-        {
-          text: `I'll now translate to ${selectedLanguage}. Try saying 'hello' or 'thank you'!`,
-          isBot: true,
-        },
-      ]);
-    }
+  const handleLanguageChange = (language: string) => {
+    setSelectedLanguage(language as Language);
+    setMessages([
+      ...messages,
+      {
+        text: `I'll now translate to ${language}. Try saying 'hello' or 'thank you'!`,
+        isBot: true,
+      },
+    ]);
   };
 
   return (
@@ -89,7 +83,7 @@ const GPT4ChatbotLayout: React.FC = () => {
           <div ref={bottomRef} />
         </div>
         <ChatInput onSendMessage={handleSendMessage} />
-        <ChatActions onActionClick={handleActionClick} />
+        <ChatActions setSelectedLanguage={handleLanguageChange} selectedLanguage={selectedLanguage} />
       </div>
     </div>
   );
