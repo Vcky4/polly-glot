@@ -18,10 +18,10 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message, isBot }) => {
     >
       {message.includes("<br />")
         ? message.split("<br />").map((part, index) => (
-            <React.Fragment key={index}>
-              {index > 0 && <br />}
-              {part}
-            </React.Fragment>
+          <span key={index}>
+          {index > 0 && <br />}
+          {part}
+          </span>
           ))
         : message}
     </div>
